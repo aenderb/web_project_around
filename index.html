@@ -32,20 +32,123 @@
           alt="Avatar"
           class="profile__avatar"
         />
-        <div class="profile__description">
-          <p class="profile_name">Jacques Cousteau</p>
-          <a href="#" class="profile__button-edit"
-            ><img
-              class="profile__button-edit-img"
-              src="./images/Pencil.svg"
-              alt="Lapis para edição"
-          /></a>
-          <p class="profile__role">Explorador</p>
+        <div class="profile__container">
+          <div class="profile__description">
+            <p class="profile__name">Jacques Cousteau</p>
+            <a class="profile__button-edit"
+              ><img
+                class="profile__button-edit-img"
+                src="./images/Pencil.svg"
+                alt="Lapis para edição"
+            /></a>
+          </div>
+          <p class="profile__about">Explorador</p>
         </div>
-        <a href="#" class="profile__button-add"
+        <a class="profile__button-add"
           ><img class="profile__button-add-img" src="./images/Plus.svg" alt=""
         /></a>
       </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="card">
+            <img
+              src="images/Yosemite_valley.jpg"
+              alt="Vale de Yosemite"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h3 class="card__title">Vale de Yosemite</h3>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img
+              src="images/Louise_lake.jpg"
+              alt="Lago Louise"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h3 class="card__title">Lago Louise</h3>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img
+              src="images/mountain_care.jpg"
+              alt="Montanhas Care"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h3 class="card__title">Montanhas Care</h3>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img src="images/latemar.jpg" alt="Latemar" class="card__image" />
+            <div class="card__description">
+              <h3 class="card__title">Latemar</h3>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img
+              src="images/National_park.jpg"
+              alt="Parque Nacional"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h3 class="card__title">Parque Nacional</h3>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img
+              src="images/Braies_lake.jpg"
+              alt="Lago di Braies"
+              class="card__image"
+            />
+            <div class="card__description">
+              <h3 class="card__title">Lago di Braies</h3>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <div class="modal" id="edit-profile-modal">
+        <div class="modal__container">
+          <button class="modal__close-button" type="button">&times;</button>
+          <h2 class="modal__title">Editar perfil</h2>
+          <form class="modal__form" id="profile-form">
+            <input
+              type="text"
+              class="modal__input"
+              id="profile-name-input"
+              name="name"
+              placeholder="Nome"
+              required
+            />
+            <input
+              type="text"
+              class="modal__input"
+              id="profile-about-input"
+              name="description"
+              placeholder="Sobre mim"
+              required
+            />
+            <button type="submit" class="modal__submit-button">Salvar</button>
+          </form>
+        </div>
+      </div>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2025 Around The EU</p>
+      </footer>
     </div>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>
