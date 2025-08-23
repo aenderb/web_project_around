@@ -12,7 +12,10 @@ Tecnologias utilizadas HTML + CSS + Javascript
     - Javascript 
         - Abrir e fechar form modal 
         - Carregar valores de dois inputs da pagina 
-        - Alterar e Salvar valores de inputs 
+        - Alterar e Salvar valores de inputs
+        - Tornar a lista de fotos dinamica
+        - incluir e excluir img com manipulaçao de DOM
+  
   
 Acesse a pagina aqui: https://aenderb.github.io/web_project_around/
 
