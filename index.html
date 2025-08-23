@@ -87,6 +87,33 @@
           </form>
         </div>
       </div>
+
+      <div class="modal" id="insert-card-modal">
+        <div class="modal__container">
+          <button class="modal__close-button" type="button">&times;</button>
+          <h2 class="modal__title">Novo Local</h2>
+          <form class="modal__form" id="insert-card-form">
+            <input
+              type="text"
+              class="modal__input"
+              id="title-card-input"
+              name="title"
+              placeholder="Título"
+              required
+            />
+            <input
+              type="text"
+              class="modal__input"
+              id="link-card-input"
+              name="link"
+              placeholder="Link da imagem"
+              required
+            />
+            <button type="submit" class="modal__submit-button">Criar</button>
+          </form>
+        </div>
+      </div>
+
       <footer class="footer">
         <p class="footer__copyright">&copy; 2025 Around The EU</p>
       </footer>
