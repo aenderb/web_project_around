@@ -80,7 +80,7 @@ function handleInsertCardFormSubmit(evt) {
   linkCardInput.value = "";
 }
 
-function handleCreateCard(card) {
+function renderCards(card) {
   const template = document.querySelector(".cards__template").content;
 
   // clona o conteúdo do template
@@ -100,16 +100,21 @@ function handleCreateCard(card) {
     likeButtons.classList.toggle("card__like-button_active");
   });
 
+  const removeCardButton = cardElement.querySelector(".card__remove-button");
+  removeCardButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
   listElement.prepend(cardElement);
 }
 
-function renderCards(cards) {
+function handleCreateCard(cards) {
   cards.forEach((card) => {
-    handleCreateCard(card);
+    renderCards(card);
   });
 }
 
-renderCards(initialCards);
+handleCreateCard(initialCards);
 
 editProfileButton.addEventListener("click", () => openModal(editProfileModal));
 closeModalButton.addEventListener("click", () => closeModal(editProfileModal));
