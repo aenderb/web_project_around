@@ -1,22 +1,26 @@
+// ===== ELEMENTOS =====
+// Profile
 const editProfileButton = document.querySelector(".profile__button-edit");
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const closeModalButton = editProfileModal.querySelector(".modal__close-button");
 const profileForm = document.querySelector("#profile-form");
 const profileNameInput = document.querySelector("#profile-name-input");
 const profileAboutInput = document.querySelector("#profile-about-input");
 const profileName = document.querySelector(".profile__name");
 const profileAbout = document.querySelector(".profile__about");
 
+// Cards
 const insertCardButton = document.querySelector(".profile__button-add");
 const insertCardModal = document.querySelector("#insert-card-modal");
-const closeModalAddButton = insertCardModal.querySelector(
-  ".modal__close-button"
-);
 const insertCardForm = document.querySelector("#insert-card-form");
 const titleCardInput = document.querySelector("#title-card-input");
 const linkCardInput = document.querySelector("#link-card-input");
 const listElement = document.querySelector(".elements__list");
 
+// Modal de foto
+const photoModal = document.querySelector("#photo-modal");
+const photoModalImage = photoModal.querySelector(".modal__photo-img");
+
+// ===== DADOS INICIAIS =====
 const initialCards = [
   {
     name: "Lago di Braies",
@@ -44,16 +48,11 @@ const initialCards = [
   },
 ];
 
-let card = [
-  {
-    name: "",
-    link: "",
-  },
-];
-
+// Preenche inputs iniciais do perfil
 profileNameInput.value = profileName.textContent.trim();
 profileAboutInput.value = profileAbout.textContent.trim();
 
+// ===== FUNÇÕES DE MODAL =====
 function openModal(modalElement) {
   modalElement.classList.add("modal_opened");
 }
@@ -62,6 +61,21 @@ function closeModal(modalElement) {
   modalElement.classList.remove("modal_opened");
 }
 
+// ===== FUNÇOES EXTRAS DE FECHAMENTO DE MODAL
+function handleOverlayClick(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
+}
+
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal.modal_opened");
+    if (openedModal) closeModal(openedModal);
+  }
+}
+
+// ===== FUNÇÕES DE FORM =====
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
@@ -71,57 +85,70 @@ function handleProfileFormSubmit(evt) {
 
 function handleInsertCardFormSubmit(evt) {
   evt.preventDefault();
-
-  card.name = titleCardInput.value;
-  card.link = linkCardInput.value;
-  handleCreateCard(card);
+  const newCard = {
+    name: titleCardInput.value,
+    link: linkCardInput.value,
+  };
+  renderCard(newCard);
   closeModal(insertCardModal);
-  titleCardInput.value = "";
-  linkCardInput.value = "";
+  insertCardForm.reset();
 }
 
-function renderCards(card) {
+// ===== FUNÇÃO DE CARDS =====
+function renderCard(card) {
   const template = document.querySelector(".cards__template").content;
-
-  // clona o conteúdo do template
   const cardElement = template.querySelector(".card").cloneNode(true);
 
-  // busca os elementos internos do clone
   const img = cardElement.querySelector(".card__image");
   const title = cardElement.querySelector(".card__title");
 
-  // preenche os dados
   img.src = card.link;
   img.alt = card.name;
   title.textContent = card.name;
 
-  const likeButtons = cardElement.querySelector(".card__like-button");
-  likeButtons.addEventListener("click", () => {
-    likeButtons.classList.toggle("card__like-button_active");
-  });
+  // botão like
+  cardElement
+    .querySelector(".card__like-button")
+    .addEventListener("click", (e) => {
+      e.target.classList.toggle("card__like-button_active");
+    });
 
-  const removeCardButton = cardElement.querySelector(".card__remove-button");
-  removeCardButton.addEventListener("click", () => {
-    cardElement.remove();
+  // remover cards
+  cardElement
+    .querySelector(".card__remove-button")
+    .addEventListener("click", () => {
+      cardElement.remove();
+    });
+
+  // abrir foto no modal
+  img.addEventListener("click", () => {
+    photoModalImage.src = card.link;
+    photoModalImage.alt = card.name;
+    openModal(photoModal);
   });
 
   listElement.prepend(cardElement);
 }
 
-function handleCreateCard(cards) {
-  cards.forEach((card) => {
-    renderCards(card);
-  });
-}
+// Renderizar catões iniciais
+initialCards.forEach(renderCard);
 
-handleCreateCard(initialCards);
+// ===== EVENTOS =====
 
 editProfileButton.addEventListener("click", () => openModal(editProfileModal));
-closeModalButton.addEventListener("click", () => closeModal(editProfileModal));
-profileForm.addEventListener("submit", handleProfileFormSubmit);
-
 insertCardButton.addEventListener("click", () => openModal(insertCardModal));
-closeModalAddButton.addEventListener("click", () =>
-  closeModal(insertCardModal)
-);
+
+profileForm.addEventListener("submit", handleProfileFormSubmit);
 insertCardForm.addEventListener("submit", handleInsertCardFormSubmit);
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("click", handleOverlayClick);
+});
+
+document.addEventListener("keydown", handleEscClose);
+
+document.querySelectorAll(".modal__close-button").forEach((btn) => {
+  btn.addEventListener("click", (evt) => {
+    closeModal(evt.target.closest(".modal"));
+  });
+});
