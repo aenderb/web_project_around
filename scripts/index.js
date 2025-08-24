@@ -19,6 +19,7 @@ const listElement = document.querySelector(".elements__list");
 // Modal de foto
 const photoModal = document.querySelector("#photo-modal");
 const photoModalImage = photoModal.querySelector(".modal__photo-img");
+const photoModalImageTitle = photoModal.querySelector(".modal__photo-title");
 
 // ===== DADOS INICIAIS =====
 const initialCards = [
@@ -124,6 +125,8 @@ function renderCard(card) {
   img.addEventListener("click", () => {
     photoModalImage.src = card.link;
     photoModalImage.alt = card.name;
+    photoModalImageTitle.textContent = card.name;
+
     openModal(photoModal);
   });
 
