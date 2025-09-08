@@ -1,4 +1,4 @@
-.modal {
+.popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,13 +14,13 @@
   z-index: 999;
 }
 
-.modal_opened {
+.popup_opened {
   visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 0.3s;
 }
 
-.modal__container {
+.popup__container {
   background-color: #fff;
   padding: 36px;
   border-radius: 10px;
@@ -29,7 +29,7 @@
   width: 430px;
 }
 
-.modal__close-button {
+.popup__close-button {
   position: absolute;
   top: -40px;
   right: -40px;
@@ -40,18 +40,18 @@
   cursor: pointer;
 }
 
-.modal__close-button:hover {
+.popup__close-button:hover {
   color: #565656;
 }
 
-.modal__title {
+.popup__title {
   color: #000;
   font-weight: 900;
   font-size: 24px;
   margin: 0 0 54px;
 }
 
-.modal__input {
+.popup__input {
   width: 100%;
   height: 40px;
   border: none;
@@ -63,7 +63,7 @@
   color: #000;
 }
 
-.modal__submit-button {
+.popup__submit-button {
   width: 100%;
   height: 50px;
   background-color: #000;
@@ -76,11 +76,11 @@
   margin-top: 18px;
 }
 
-.modal__submit-button:hover {
+.popup__submit-button:hover {
   opacity: 0.8;
 }
 
-.modal__container_type_photo {
+.popup__container_type_photo {
   background: none;
   padding: 0;
   border-radius: 0;
@@ -90,13 +90,13 @@
   flex-direction: column;
 }
 
-.modal__photo-img {
+.popup__photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.modal__photo-title {
+.popup__photo-title {
   opacity: 1;
   color: #fff;
   font-weight: 400;
@@ -106,36 +106,36 @@
 }
 
 @media screen and (max-width: 600px) {
-  .modal__container {
+  .popup__container {
     width: 90%;
     max-width: 282px;
     padding: 22px;
   }
 
-  .modal__container_type_photo {
+  .popup__container_type_photo {
     width: 90%;
     max-width: 433px;
     max-height: 540px;
   }
 
-  .modal__close-button {
+  .popup__close-button {
     right: 0;
     top: -36px;
     font-size: 30px;
   }
 
-  .modal__close-button:hover {
+  .popup__close-button:hover {
     color: #565656;
   }
 
-  .modal__title {
+  .popup__title {
     font-size: 18px;
     margin-bottom: 36px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .modal__container_type_photo {
+  .popup__container_type_photo {
     width: 90%;
     max-width: 240px;
     max-height: 299px;

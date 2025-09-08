@@ -63,14 +63,14 @@
         </template>
       </section>
 
-      <div class="modal" id="edit-profile-modal">
-        <div class="modal__container">
-          <button class="modal__close-button" type="button">&times;</button>
-          <h2 class="modal__title">Editar perfil</h2>
-          <form class="modal__form" id="profile-form">
+      <div class="popup" id="edit-profile-popup">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title">Editar perfil</h2>
+          <form class="popup__form" id="profile-form">
             <input
               type="text"
-              class="modal__input"
+              class="popup__input"
               id="profile-name-input"
               name="name"
               placeholder="Nome"
@@ -78,25 +78,25 @@
             />
             <input
               type="text"
-              class="modal__input"
+              class="popup__input"
               id="profile-about-input"
               name="description"
               placeholder="Sobre mim"
               required
             />
-            <button type="submit" class="modal__submit-button">Salvar</button>
+            <button type="submit" class="popup__submit-button">Salvar</button>
           </form>
         </div>
       </div>
 
-      <div class="modal" id="insert-card-modal">
-        <div class="modal__container">
-          <button class="modal__close-button" type="button">&times;</button>
-          <h2 class="modal__title">Novo Local</h2>
-          <form class="modal__form" id="insert-card-form">
+      <div class="popup" id="insert-card-popup">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title">Novo Local</h2>
+          <form class="popup__form" id="insert-card-form">
             <input
               type="text"
-              class="modal__input"
+              class="popup__input"
               id="title-card-input"
               name="title"
               placeholder="Título"
@@ -104,26 +104,26 @@
             />
             <input
               type="text"
-              class="modal__input"
+              class="popup__input"
               id="link-card-input"
               name="link"
               placeholder="Link da imagem"
               required
             />
-            <button type="submit" class="modal__submit-button">Criar</button>
+            <button type="submit" class="popup__submit-button">Criar</button>
           </form>
         </div>
       </div>
 
-      <div class="modal" id="photo-modal">
-        <div class="modal__container modal__container_type_photo">
-          <button class="modal__close-button" type="button">&times;</button>
+      <div class="popup" id="photo-popup">
+        <div class="popup__container popup__container_type_photo">
+          <button class="popup__close-button" type="button">&times;</button>
           <img
             src="caminho_da_imagem.jpg"
             alt="alt_da_imagem"
-            class="modal__photo-img"
+            class="popup__photo-img"
           />
-          <p class="modal__photo-title"></p>
+          <p class="popup__photo-title"></p>
         </div>
       </div>
 
