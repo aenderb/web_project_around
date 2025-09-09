@@ -7,6 +7,7 @@ const profileNameInput = document.querySelector("#profile-name-input");
 const profileAboutInput = document.querySelector("#profile-about-input");
 const profileName = document.querySelector(".profile__name");
 const profileAbout = document.querySelector(".profile__about");
+const profileSubmitButton = profileForm.querySelector(".popup__button");
 
 // Cards
 const insertCardButton = document.querySelector(".profile__button-add");
@@ -15,6 +16,7 @@ const insertCardForm = document.querySelector("#insert-card-form");
 const titleCardInput = document.querySelector("#title-card-input");
 const linkCardInput = document.querySelector("#link-card-input");
 const listElement = document.querySelector(".elements__list");
+const insertCardSubmitButton = insertCardForm.querySelector(".popup__button");
 
 // Popup de foto
 const photoPopup = document.querySelector("#photo-popup");
@@ -60,6 +62,23 @@ function openPopup(popupElement) {
 
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
+
+  resetValidation();
+}
+
+function resetValidation() {
+  if (profileForm.id === "profile-form") {
+    // volta com valores atuais do perfil
+    profileNameInput.value = profileName.textContent.trim();
+    profileAboutInput.value = profileAbout.textContent.trim();
+    profileSubmitButton.classList.add("popup__button_disabled");
+  }
+
+  if (insertCardForm.id === "insert-card-form") {
+    // limpa o form de novo card
+    insertCardForm.reset();
+    insertCardSubmitButton.classList.add("popup__button_disabled");
+  }
 }
 
 // ===== FUNÇOES EXTRAS DE FECHAMENTO DE MODAL
