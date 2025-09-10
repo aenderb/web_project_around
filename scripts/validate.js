@@ -2,31 +2,43 @@ const showInputError = (
   formElement,
   inputElement,
   errorMessage,
-  enableValidation
+  inputErrorClass,
+  errorClass
 ) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add(enableValidation.inputErrorClass);
+  inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(enableValidation.errorClass);
+  errorElement.classList.add(errorClass);
 };
 
-const hideInputError = (formElement, inputElement, enableValidation) => {
+const hideInputError = (
+  formElement,
+  inputElement,
+  inputErrorClass,
+  errorClass
+) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(enableValidation.inputErrorClass);
-  errorElement.classList.remove(enableValidation.errorClass);
+  inputElement.classList.remove(inputErrorClass);
+  errorElement.classList.remove(errorClass);
   errorElement.textContent = "";
 };
 
-const checkInputValidity = (formElement, inputElement, enableValidation) => {
+const checkInputValidity = (
+  formElement,
+  inputElement,
+  inputErrorClass,
+  errorClass
+) => {
   if (!inputElement.validity.valid) {
     showInputError(
       formElement,
       inputElement,
       inputElement.validationMessage,
-      enableValidation
+      inputErrorClass,
+      errorClass
     );
   } else {
-    hideInputError(formElement, inputElement, enableValidation);
+    hideInputError(formElement, inputElement, inputErrorClass, errorClass);
   }
 };
 
@@ -36,47 +48,67 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonElement, enableValidation) => {
+const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(enableValidation.inactiveButtonClass);
+    buttonElement.classList.add(inactiveButtonClass);
   } else {
-    buttonElement.classList.remove(enableValidation.inactiveButtonClass);
+    buttonElement.classList.remove(inactiveButtonClass);
   }
 };
 
-const setEventListeners = (formElement, enableValidation) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(enableValidation.inputSelector)
-  );
-  const buttonElement = formElement.querySelector(
-    enableValidation.submitButtonSelector
-  );
+const setEventListeners = (
+  formElement,
+  inputSelector,
+  submitButtonSelector,
+  inactiveButtonClass,
+  inputErrorClass,
+  errorClass
+) => {
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+  const buttonElement = formElement.querySelector(submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement, enableValidation);
+  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement, enableValidation);
-      toggleButtonState(inputList, buttonElement, enableValidation);
+      checkInputValidity(
+        formElement,
+        inputElement,
+        inputErrorClass,
+        errorClass
+      );
+      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     });
   });
 };
 
-const enableValidation = (enableValidation) => {
-  const formList = Array.from(
-    document.querySelectorAll(enableValidation.formSelector)
-  );
+const enableValidation = ({
+  formSelector,
+  inputSelector,
+  submitButtonSelector,
+  inactiveButtonClass,
+  inputErrorClass,
+  errorClass,
+}) => {
+  const formList = Array.from(document.querySelectorAll(formSelector));
 
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
 
-    setEventListeners(formElement, enableValidation);
+    setEventListeners(
+      formElement,
+      inputSelector,
+      submitButtonSelector,
+      inactiveButtonClass,
+      inputErrorClass,
+      errorClass
+    );
   });
 };
 
-enableValidation(enableValidation);
+//enableValidation(enableValidation);
 
 enableValidation({
   formSelector: ".popup__form",
