@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import { setEventListeners } from "./utils.js";
 
 // ===== ELEMENTOS =====
 // Profile
@@ -57,106 +58,7 @@ const initialCards = [
 profileNameInput.value = profileName.textContent.trim();
 profileAboutInput.value = profileAbout.textContent.trim();
 
-// ===== FUNÇÕES DE MODAL =====
-function openPopup(popupElement) {
-  popupElement.classList.add("popup_opened");
-}
-
-function closePopup(popupElement) {
-  popupElement.classList.remove("popup_opened");
-
-  resetValidation();
-}
-
-function resetValidation() {
-  if (profileForm.id === "profile-form") {
-    // volta com valores atuais do perfil
-    profileNameInput.value = profileName.textContent.trim();
-    profileAboutInput.value = profileAbout.textContent.trim();
-    profileSubmitButton.classList.add("popup__button_disabled");
-  }
-
-  if (insertCardForm.id === "insert-card-form") {
-    // limpa o form de novo card
-    insertCardForm.reset();
-    insertCardSubmitButton.classList.add("popup__button_disabled");
-  }
-}
-
-// ===== FUNÇOES EXTRAS DE FECHAMENTO DE MODAL
-function handleOverlayClick(evt) {
-  if (evt.target.classList.contains("popup")) {
-    closePopup(evt.target);
-  }
-}
-
-function handleEscClose(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup.popup_opened");
-    if (openedPopup) closePopup(openedPopup);
-  }
-}
-
-// ===== FUNÇÕES DE FORM =====
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = profileNameInput.value;
-  profileAbout.textContent = profileAboutInput.value;
-  closePopup(editProfilePopup);
-}
-
-function handleInsertCardFormSubmit(evt) {
-  evt.preventDefault();
-  const newCard = {
-    name: titleCardInput.value,
-    link: linkCardInput.value,
-  };
-  renderCard(newCard);
-  closePopup(insertCardPopup);
-  insertCardForm.reset();
-}
-
-// ===== FUNÇÃO DE CARDS =====
-function renderCard(card) {
-  const template = document.querySelector(".cards__template").content;
-  const cardElement = template.querySelector(".card").cloneNode(true);
-
-  const img = cardElement.querySelector(".card__image");
-  const title = cardElement.querySelector(".card__title");
-
-  img.src = card.link;
-  img.alt = card.name;
-  title.textContent = card.name;
-
-  // botão like
-  cardElement
-    .querySelector(".card__like-button")
-    .addEventListener("click", (e) => {
-      e.target.classList.toggle("card__like-button_active");
-    });
-
-  // remover cards
-  cardElement
-    .querySelector(".card__remove-button")
-    .addEventListener("click", () => {
-      cardElement.remove();
-    });
-
-  // abrir foto no popup
-  img.addEventListener("click", () => {
-    photoPopupImage.src = card.link;
-    photoPopupImage.alt = card.name;
-    photoPopupImageTitle.textContent = card.name;
-
-    openPopup(photoPopup);
-  });
-
-  listElement.prepend(cardElement);
-}
-
 // Renderizar catões iniciais
-//initialCards.forEach(renderCard);
-
 initialCards.forEach((item) => {
   const card = new Card(item);
 
@@ -166,22 +68,4 @@ initialCards.forEach((item) => {
   listElement.prepend(cardElement);
 });
 
-// ===== EVENTOS =====
-
-editProfileButton.addEventListener("click", () => openPopup(editProfilePopup));
-insertCardButton.addEventListener("click", () => openPopup(insertCardPopup));
-
-profileForm.addEventListener("submit", handleProfileFormSubmit);
-insertCardForm.addEventListener("submit", handleInsertCardFormSubmit);
-
-document.querySelectorAll(".popup").forEach((popup) => {
-  popup.addEventListener("click", handleOverlayClick);
-});
-
-document.addEventListener("keydown", handleEscClose);
-
-document.querySelectorAll(".popup__close-button").forEach((btn) => {
-  btn.addEventListener("click", (evt) => {
-    closePopup(evt.target.closest(".popup"));
-  });
-});
+setEventListeners();
