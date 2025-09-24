@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+
 // ===== ELEMENTOS =====
 // Profile
 const editProfileButton = document.querySelector(".profile__button-edit");
@@ -153,7 +155,16 @@ function renderCard(card) {
 }
 
 // Renderizar catões iniciais
-initialCards.forEach(renderCard);
+//initialCards.forEach(renderCard);
+
+initialCards.forEach((item) => {
+  const card = new Card(item);
+
+  const cardElement = card.generateCard();
+
+  // Adiciona ao DOM
+  listElement.prepend(cardElement);
+});
 
 // ===== EVENTOS =====
 
