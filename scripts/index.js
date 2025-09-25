@@ -1,4 +1,5 @@
-import Card from "./Card.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 import { setEventListeners } from "./utils.js";
 
 // ===== ELEMENTOS =====
@@ -54,18 +55,30 @@ const initialCards = [
   },
 ];
 
-// Preenche inputs iniciais do perfil
-profileNameInput.value = profileName.textContent.trim();
-profileAboutInput.value = profileAbout.textContent.trim();
+const selectors = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
+export function renderCard(item) {
+  const card = new Card(item);
+  const cardElement = card.generateCard();
+  // Adiciona ao DOM
+  listElement.prepend(cardElement);
+}
 
 // Renderizar catões iniciais
 initialCards.forEach((item) => {
-  const card = new Card(item);
-
-  const cardElement = card.generateCard();
-
-  // Adiciona ao DOM
-  listElement.prepend(cardElement);
+  renderCard(item);
 });
 
 setEventListeners();
+
+const profileFormValidator = new FormValidator(selectors);
+profileFormValidator.enableValidation();
+const inserCardFormValidator = new FormValidator(selectors);
+inserCardFormValidator.enableValidation();
