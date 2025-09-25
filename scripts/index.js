@@ -3,29 +3,7 @@ import { FormValidator } from "./FormValidator.js";
 import { setEventListeners } from "./utils.js";
 
 // ===== ELEMENTOS =====
-// Profile
-const editProfileButton = document.querySelector(".profile__button-edit");
-const editProfilePopup = document.querySelector("#edit-profile-popup");
-const profileForm = document.querySelector("#profile-form");
-const profileNameInput = document.querySelector("#profile-name-input");
-const profileAboutInput = document.querySelector("#profile-about-input");
-const profileName = document.querySelector(".profile__name");
-const profileAbout = document.querySelector(".profile__about");
-const profileSubmitButton = profileForm.querySelector(".popup__button");
-
-// Cards
-const insertCardButton = document.querySelector(".profile__button-add");
-const insertCardPopup = document.querySelector("#insert-card-popup");
-const insertCardForm = document.querySelector("#insert-card-form");
-const titleCardInput = document.querySelector("#title-card-input");
-const linkCardInput = document.querySelector("#link-card-input");
 const listElement = document.querySelector(".elements__list");
-const insertCardSubmitButton = insertCardForm.querySelector(".popup__button");
-
-// Popup de foto
-const photoPopup = document.querySelector("#photo-popup");
-const photoPopupImage = photoPopup.querySelector(".popup__photo-img");
-const photoPopupImageTitle = photoPopup.querySelector(".popup__photo-title");
 
 // ===== DADOS INICIAIS =====
 const initialCards = [
