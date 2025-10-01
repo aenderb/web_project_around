@@ -1,21 +1,25 @@
-import {
-  handleProfileFormSubmit,
-  handleInsertCardFormSubmit,
-  profileForm,
-  insertCardForm,
-  editProfilePopup,
-  profileNameInput,
-  profileName,
-  profileAbout,
-  profileAboutInput,
-  resetValidation,
-  insertCardPopup,
-} from "./FormValidator.js";
+import { renderCard } from "./index.js";
 
 // ===== ELEMENTOS =====
 
 const editProfileButton = document.querySelector(".profile__button-edit");
 const insertCardButton = document.querySelector(".profile__button-add");
+
+//Form  Profile
+const editProfilePopup = document.querySelector("#edit-profile-popup");
+const profileForm = document.querySelector("#profile-form");
+const profileNameInput = document.querySelector("#profile-name-input");
+const profileAboutInput = document.querySelector("#profile-about-input");
+const profileName = document.querySelector(".profile__name");
+const profileAbout = document.querySelector(".profile__about");
+const profileSubmitButton = profileForm.querySelector(".popup__button");
+
+// Form Cards
+const insertCardPopup = document.querySelector("#insert-card-popup");
+const insertCardForm = document.querySelector("#insert-card-form");
+const titleCardInput = document.querySelector("#title-card-input");
+const linkCardInput = document.querySelector("#link-card-input");
+const insertCardSubmitButton = insertCardForm.querySelector(".popup__button");
 
 // Popup de foto
 export const photoPopup = document.querySelector("#photo-popup");
@@ -32,6 +36,40 @@ export function openPopup(popupElement) {
 export function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
   resetValidation();
+}
+
+// ===== FUNÇÕES DE FORM =====
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileNameInput.value;
+  profileAbout.textContent = profileAboutInput.value;
+  closePopup(editProfilePopup);
+}
+
+function handleInsertCardFormSubmit(evt) {
+  evt.preventDefault();
+  const newCard = {
+    name: titleCardInput.value,
+    link: linkCardInput.value,
+  };
+  renderCard(newCard);
+  closePopup(insertCardPopup);
+  insertCardForm.reset();
+}
+
+function resetValidation() {
+  if (profileForm.id === "profile-form") {
+    // volta com valores atuais do perfil
+    profileNameInput.value = profileName.textContent.trim();
+    profileAboutInput.value = profileAbout.textContent.trim();
+    profileSubmitButton.classList.add("popup__button_disabled");
+  }
+
+  if (insertCardForm.id === "insert-card-form") {
+    // limpa o form de novo card
+    insertCardForm.reset();
+    insertCardSubmitButton.classList.add("popup__button_disabled");
+  }
 }
 
 // ===== FUNÇOES EXTRAS DE FECHAMENTO DE MODAL

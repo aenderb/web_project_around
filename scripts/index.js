@@ -33,7 +33,7 @@ const initialCards = [
   },
 ];
 
-const selectors = {
+const validationSettings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -56,7 +56,11 @@ initialCards.forEach((item) => {
 
 setEventListeners();
 
-const profileFormValidator = new FormValidator(selectors);
-profileFormValidator.enableValidation();
-const inserCardFormValidator = new FormValidator(selectors);
-inserCardFormValidator.enableValidation();
+// Habilita a validação
+const forms = Array.from(
+  document.querySelectorAll(validationSettings.formSelector)
+);
+forms.forEach((form) => {
+  const formValidator = new FormValidator(validationSettings, form);
+  formValidator.enableValidation();
+});
