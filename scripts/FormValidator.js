@@ -43,8 +43,10 @@ export class FormValidator {
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._settings.inactiveButtonClass);
+      this._buttonElement.disabled = false;
     } else {
       this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
+      his._buttonElement.disabled = true;
     }
   }
 
@@ -59,6 +61,12 @@ export class FormValidator {
   }
 
   enableValidation() {
+    this._formElement.addEventListener("keydown", (evt) => {
+      if (evt.key === "Enter" && this._hasInvalidInput()) {
+        evt.preventDefault();
+      }
+    });
+
     this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });

@@ -25,6 +25,10 @@
   font-size: 42px;
   line-height: 48px;
   margin: 0 auto 0 0;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__button-edit {
@@ -51,6 +55,10 @@
   font-size: 18px;
   line-height: 100%;
   margin-top: 16px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__button-add {
