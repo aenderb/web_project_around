@@ -69,8 +69,6 @@ const profileEditPopupInstance = new PopupWithForms(
       name: formData.name,
       description: formData.description,
     });
-    console.log(formData);
-
     profileEditPopupInstance.close();
   }
 );
