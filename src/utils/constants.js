@@ -1,12 +1,4 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { setEventListeners } from "./utils.js";
-
-// ===== ELEMENTOS =====
-const listElement = document.querySelector(".elements__list");
-
-// ===== DADOS INICIAIS =====
-const initialCards = [
+export const initialCards = [
   {
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
@@ -33,7 +25,7 @@ const initialCards = [
   },
 ];
 
-const validationSettings = {
+export const validationSettings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -42,25 +34,19 @@ const validationSettings = {
   errorClass: "popup__error_visible",
 };
 
-export function renderCard(item) {
-  const card = new Card(item);
-  const cardElement = card.generateCard();
-  // Adiciona ao DOM
-  listElement.prepend(cardElement);
-}
-
-// Renderizar catões iniciais
-initialCards.forEach((item) => {
-  renderCard(item);
-});
-
-setEventListeners();
-
-// Habilita a validação
-const forms = Array.from(
-  document.querySelectorAll(validationSettings.formSelector)
-);
-forms.forEach((form) => {
-  const formValidator = new FormValidator(validationSettings, form);
-  formValidator.enableValidation();
-});
+// ===== SELETORES =====
+export const selectors = {
+  profileEditForm: document.forms["profile-form"],
+  insertCardForm: document.forms["insert-card-form"],
+  profileEditButton: document.querySelector(".profile__button-edit"),
+  addCardButton: document.querySelector(".profile__button-add"),
+  profileEditPopup: document.querySelector("#edit-profile-popup"),
+  addCardPopup: document.querySelector("#insert-card-popup"),
+  picturePopup: document.querySelector("#photo-popup"),
+  profileTitle: document.querySelector(".profile__name"),
+  profileDescription: document.querySelector(".profile__about"),
+  profileTitleInput: document.querySelector("#profile-name-input"),
+  profileDescriptionInput: document.querySelector("#profile-about-input"),
+  addCardTitleInput: document.querySelector("#title-card-input"),
+  addCardUrlInput: document.querySelector("#link-card-input"),
+};

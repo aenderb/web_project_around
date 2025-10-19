@@ -16,6 +16,8 @@ Tecnologias utilizadas HTML + CSS + Javascript
         - Tornar a lista de fotos dinamica
         - incluir e excluir img com manipulaçao de DOM
         - POO - Programaçao orientada a Objetos
+        - Refactor de pastas para organizarção do projeto
+        - Refactor com todas as classes e suas responsabilidades
   
   
 Acesse a pagina aqui: https://aenderb.github.io/web_project_around/

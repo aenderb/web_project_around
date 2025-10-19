@@ -42,11 +42,9 @@ export class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._settings.inactiveButtonClass);
-      this._buttonElement.disabled = false;
+      this.disableButton();
     } else {
-      this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
-      his._buttonElement.disabled = true;
+      this.enableButton();
     }
   }
 
@@ -71,5 +69,28 @@ export class FormValidator {
       evt.preventDefault();
     });
     this._setEventListeners();
+  }
+
+  resetValidation() {
+    this._inputList.forEach((inputElement) => {
+      const errorElement = this._formElement.querySelector(
+        `.${inputElement.id}-error`
+      );
+
+      inputElement.classList.remove(this._settings.inputErrorClass);
+      errorElement.textContent = "";
+    });
+
+    this._toggleButtonState();
+  }
+
+  disableButton() {
+    this._buttonElement.classList.add(this._settings.inactiveButtonClass);
+    this._buttonElement.disabled = true;
+  }
+
+  enableButton() {
+    this._buttonElement.classList.remove(this._settings.inactiveButtonClass);
+    this._buttonElement.disabled = false;
   }
 }
