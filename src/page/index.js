@@ -4,7 +4,7 @@ import { Section } from "../components/Section.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForms } from "../components/PopupWithForms.js";
-import { UserInfo } from "../components/userInfo.js";
+import { UserInfo } from "../components/UserInfo.js";
 
 // ===== IMPORTAR CONSTANTES =====
 import {
