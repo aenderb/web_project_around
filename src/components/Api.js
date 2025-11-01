@@ -125,10 +125,19 @@ class Api {
 }
 
 // BUSCA initialCards na API
-export const api = new Api({
-  baseUrl: CONFIG.BASE_URL,
-  headers: {
-    authorization: CONFIG.API_TOKEN,
-    "Content-Type": "application/json",
-  },
-});
+export async function initApi() {
+  let CONFIG;
+  try {
+    CONFIG = (await import("../../config.js")).CONFIG;
+  } catch {
+    CONFIG = (await import("../../config.example.js")).CONFIG;
+  }
+
+  return new Api({
+    baseUrl: CONFIG.BASE_URL,
+    headers: {
+      authorization: CONFIG.API_TOKEN,
+      "Content-Type": "application/json",
+    },
+  });
+}
