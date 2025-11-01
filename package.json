@@ -1,0 +1,26 @@
+{
+  "name": "web_project_around",
+  "version": "1.0.0",
+  "description": "Tecnologias utilizadas HTML + CSS + Javascript   - Para esse projeto apliquei diversos conhecimentos como:     - HTML semantico     - Flexbox     - como incluir Fonts com (@font-face)     - Metodologia BEM (CSS + Arquivos)     - Design Responsivo com uso de Media Queries     - Formulário Modal (popup)     - Javascript          - Abrir e fechar form modal          - Carregar valores de dois inputs da pagina          - Alterar e Salvar valores de inputs         - Tornar a lista de fotos dinamica         - incluir e excluir img com manipulaçao de DOM         - POO - Programaçao orientada a Objetos         - Refactor de pastas para organizarção do projeto         - Refactor com todas as classes e suas responsabilidades",
+  "main": "config.js",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r src/* dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aenderb/web_project_around.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aenderb/web_project_around/issues"
+  },
+  "homepage": "https://github.com/aenderb/web_project_around",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
