@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1"
+    />
+    <meta
+      name="description"
+      content="EUA Afora - uma página interativa onde os usuários podem adicionar, remover, ou curtir fotos."
+    />
+    <meta name="author" content="Aender Binoto" />
+    <meta name="keywords" content="EUA, Afora, fotos, around" />
+    <link rel="stylesheet" href="./page/index.css" />
+    <link type="image/png" rel="icon" href="./around_icon.png" />
+    <title>EUA Afora</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/Around_logo.svg"
+          alt="logo Around US "
+          class="header__logo"
+        />
+        <div class="header__border"></div>
+      </header>
+      <section class="profile">
+        <div class="profile__avatar-wrap">
+          <img src="image" alt="Avatar" class="profile__avatar" />
+          <button class="profile__avatar-update">
+            <img
+              class="profile__avatar-update-img"
+              src="./images/Pencil.svg"
+              alt="Lápis para atualizar avatar"
+            />
+          </button>
+        </div>
+        <div class="profile__container">
+          <div class="profile__description">
+            <p class="profile__name"></p>
+            <a class="profile__button-edit"
+              ><img
+                class="profile__button-edit-img"
+                src="./images/Pencil.svg"
+                alt="Lapis para edição"
+            /></a>
+          </div>
+          <p class="profile__about">Explorador</p>
+        </div>
+        <a class="profile__button-add"
+          ><img class="profile__button-add-img" src="./images/Plus.svg" alt=""
+        /></a>
+      </section>
+      <section class="elements">
+        <ul class="elements__list"></ul>
+
+        <template class="cards__template">
+          <li class="card">
+            <button class="card__remove-button"></button>
+            <img class="card__image" src="" alt="" />
+            <div class="card__description">
+              <h3 class="card__title"></h3>
+              <button class="card__like-button" type="button"></button>
+            </div>
+          </li>
+        </template>
+      </section>
+
+      <div class="popup" id="edit-profile-popup">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title">Editar perfil</h2>
+          <form class="popup__form" id="profile-form" novalidate>
+            <label class="popup__field">
+              <input
+                type="text"
+                class="popup__input"
+                id="profile-name-input"
+                name="name"
+                placeholder="Nome"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__input-error profile-name-input-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                type="text"
+                class="popup__input"
+                id="profile-about-input"
+                name="about"
+                placeholder="Sobre mim"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__input-error profile-about-input-error"></span>
+            </label>
+            <button type="submit" class="popup__button">Salvando...</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="insert-card-popup">
+        <div class="popup__container">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title">Novo Local</h2>
+          <form class="popup__form" id="insert-card-form" novalidate>
+            <label class="popup__field">
+              <input
+                type="text"
+                class="popup__input"
+                id="title-card-input"
+                name="name"
+                placeholder="Título"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="popup__input-error title-card-input-error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                type="url"
+                class="popup__input"
+                id="link-card-input"
+                name="link"
+                placeholder="Link da imagem"
+                required
+              />
+              <span class="popup__input-error link-card-input-error"></span>
+            </label>
+            <button type="submit" class="popup__button">Criar</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="photo-popup">
+        <div class="popup__container popup__container_type_photo">
+          <button class="popup__close-button" type="button">&times;</button>
+          <img
+            src="caminho_da_imagem.jpg"
+            alt="alt_da_imagem"
+            class="popup__photo-img"
+          />
+          <p class="popup__photo-title"></p>
+        </div>
+      </div>
+
+      <div class="popup" id="confirm-popup">
+        <div class="popup__container popup__container_type_confirm">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title popup__title-confirm">Tem certeza?</h2>
+          <form class="popup__form" name="delete-confirmation">
+            <button class="popup__button popup__button-confirm" type="submit">
+              Sim
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="update-avatar-popup">
+        <div class="popup__container popup__container_type_avatar">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title popup__title-avatar">
+            Alterar foto do perfil
+          </h2>
+          <form class="popup__form" id="update-avatar-form" novalidate>
+            <label class="popup__field popup__field-avatar">
+              <input
+                type="url"
+                class="popup__input"
+                id="link-avatar-input"
+                name="avatar"
+                placeholder="Link do avatar"
+                required
+              />
+              <span class="popup__input-error link-avatar-input-error"></span>
+            </label>
+            <button type="submit" class="popup__button popup__button-avatar">
+              Salvar
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2025 Around The EU</p>
+      </footer>
+    </div>
+
+    <script type="module" src="./page/index.js"></script>
+  </body>
+</html>
