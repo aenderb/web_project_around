@@ -4,10 +4,48 @@
   margin: 40px auto;
 }
 
-.profile__avatar {
+.profile__avatar-wrap {
+  display: flex;
   width: 120px;
   height: 120px;
+  position: relative;
+}
+.profile__avatar {
+  width: 100%;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile__avatar:hover {
+  opacity: 0.2;
+}
+
+.profile__avatar-update {
+  opacity: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  inset: 0;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__avatar-wrap:hover .profile__avatar {
+  opacity: 0.2;
+}
+
+.profile__avatar-wrap:hover .profile__avatar-update {
+  opacity: 1;
+}
+
+.profile__avatar-update-img {
+  width: 26px;
+  height: 26px;
 }
 
 .profile__container {

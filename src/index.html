@@ -27,14 +27,19 @@
         <div class="header__border"></div>
       </header>
       <section class="profile">
-        <img
-          src="./images/Jaques_cousteau_pic.jpg"
-          alt="Avatar"
-          class="profile__avatar"
-        />
+        <div class="profile__avatar-wrap">
+          <img src="image" alt="Avatar" class="profile__avatar" />
+          <button class="profile__avatar-update">
+            <img
+              class="profile__avatar-update-img"
+              src="./images/Pencil.svg"
+              alt="Lápis para atualizar avatar"
+            />
+          </button>
+        </div>
         <div class="profile__container">
           <div class="profile__description">
-            <p class="profile__name">Jacques Cousteau</p>
+            <p class="profile__name"></p>
             <a class="profile__button-edit"
               ><img
                 class="profile__button-edit-img"
@@ -86,7 +91,7 @@
                 type="text"
                 class="popup__input"
                 id="profile-about-input"
-                name="description"
+                name="about"
                 placeholder="Sobre mim"
                 minlength="2"
                 maxlength="200"
@@ -94,7 +99,7 @@
               />
               <span class="popup__input-error profile-about-input-error"></span>
             </label>
-            <button type="submit" class="popup__button">Salvar</button>
+            <button type="submit" class="popup__button">Salvando...</button>
           </form>
         </div>
       </div>
@@ -109,7 +114,7 @@
                 type="text"
                 class="popup__input"
                 id="title-card-input"
-                name="title"
+                name="name"
                 placeholder="Título"
                 minlength="2"
                 maxlength="30"
@@ -142,6 +147,43 @@
             class="popup__photo-img"
           />
           <p class="popup__photo-title"></p>
+        </div>
+      </div>
+
+      <div class="popup" id="confirm-popup">
+        <div class="popup__container popup__container_type_confirm">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title popup__title-confirm">Tem certeza?</h2>
+          <form class="popup__form" name="delete-confirmation">
+            <button class="popup__button popup__button-confirm" type="submit">
+              Sim
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="update-avatar-popup">
+        <div class="popup__container popup__container_type_avatar">
+          <button class="popup__close-button" type="button">&times;</button>
+          <h2 class="popup__title popup__title-avatar">
+            Alterar foto do perfil
+          </h2>
+          <form class="popup__form" id="update-avatar-form" novalidate>
+            <label class="popup__field popup__field-avatar">
+              <input
+                type="url"
+                class="popup__input"
+                id="link-avatar-input"
+                name="avatar"
+                placeholder="Link do avatar"
+                required
+              />
+              <span class="popup__input-error link-avatar-input-error"></span>
+            </label>
+            <button type="submit" class="popup__button popup__button-avatar">
+              Salvar
+            </button>
+          </form>
         </div>
       </div>
 
