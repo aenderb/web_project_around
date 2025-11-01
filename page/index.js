@@ -6,7 +6,7 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForms } from "../components/PopupWithForms.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { UserInfo } from "../components/UserInfo.js";
-import { initApi } from "../components/Api.js";
+import { api } from "../components/Api.js";
 
 // ===== IMPORTAR CONSTANTES =====
 import { validationSettings, selectors } from "../utils/constants.js";
@@ -24,8 +24,6 @@ const {
 } = selectors;
 
 let cardSection = "";
-
-const api = await initApi();
 
 // ***** USER
 
