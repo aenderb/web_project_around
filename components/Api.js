@@ -1,4 +1,14 @@
-import { CONFIG } from "../../config.js";
+let CONFIG;
+
+try {
+  // Tenta importar o config real (local)
+  CONFIG = await import("../../config.js").then((module) => module.CONFIG);
+} catch (err) {
+  // Se falhar (não existe), usa o exemplo
+  CONFIG = await import("../../config.example.js").then(
+    (module) => module.CONFIG
+  );
+}
 
 class Api {
   constructor(options) {
