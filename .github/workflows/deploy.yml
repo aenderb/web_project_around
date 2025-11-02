@@ -35,11 +35,26 @@ jobs:
         run: |
           mkdir -p src
           cat > src/config.js <<EOF
-export const CONFIG = {
-  API_TOKEN: "${API_TOKEN}",
-  BASE_URL: "${BASE_URL}",
-};
-EOF
+          export const CONFIG = {
+            API_TOKEN: "${API_TOKEN}",
+            BASE_URL: "${BASE_URL}",
+          };
+          EOF
+
+      - name: Smoke test API
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+        run: |
+          echo "Running API smoke test against ${BASE_URL}/cards"
+          status=$(curl -s -o /dev/null -w "%{http_code}" -H "authorization: ${API_TOKEN}" "${BASE_URL}/cards")
+          echo "HTTP status: $status"
+          if [ "$status" -eq 200 ]; then
+            echo "API smoke test passed"
+            exit 0
+          fi
+          echo "API smoke test failed (status: $status). Aborting deploy."
+          exit 1
 
       - name: Build project
         run: npm run build
