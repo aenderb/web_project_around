@@ -4,6 +4,11 @@ on:
   push:
     branches: [ main ]
 
+# Grant explicit write permissions for Contents/Pages so the runner can push built files
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -11,6 +16,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # ensure full history so push operations succeed
+          fetch-depth: 0
 
       - name: Use Node.js
         uses: actions/setup-node@v4
