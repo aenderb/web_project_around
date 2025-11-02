@@ -1,15 +1,3 @@
-let CONFIG;
-
-try {
-  // Tenta importar o config real (local)
-  CONFIG = await import("../../config.js").then((module) => module.CONFIG);
-} catch (err) {
-  // Se falhar (não existe), usa o exemplo
-  CONFIG = await import("../../config.example.js").then(
-    (module) => module.CONFIG
-  );
-}
-
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
@@ -124,20 +112,17 @@ class Api {
   }
 }
 
-// BUSCA initialCards na API
-export async function initApi() {
-  let CONFIG;
-  try {
-    CONFIG = (await import("../../config.js")).CONFIG;
-  } catch {
-    CONFIG = (await import("../../config.example.js")).CONFIG;
-  }
-
-  return new Api({
-    baseUrl: CONFIG.BASE_URL,
-    headers: {
-      authorization: CONFIG.API_TOKEN,
-      "Content-Type": "application/json",
-    },
-  });
+let CONFIG;
+try {
+  CONFIG = (await import("../config.js")).CONFIG;
+} catch {
+  CONFIG = (await import("../config.example.js")).CONFIG;
 }
+
+export const api = new Api({
+  baseUrl: CONFIG.BASE_URL,
+  headers: {
+    authorization: CONFIG.API_TOKEN,
+    "Content-Type": "application/json",
+  },
+});

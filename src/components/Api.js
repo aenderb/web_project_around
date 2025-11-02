@@ -112,17 +112,10 @@ class Api {
   }
 }
 
-let CONFIG;
-try {
-  CONFIG = (await import("../config.js")).CONFIG;
-} catch {
-  CONFIG = (await import("../config.example.js")).CONFIG;
-}
-
 export const api = new Api({
-  baseUrl: CONFIG.BASE_URL,
+  baseUrl: window.CONFIG.BASE_URL,
   headers: {
-    authorization: CONFIG.API_TOKEN,
+    authorization: window.CONFIG.API_TOKEN,
     "Content-Type": "application/json",
   },
 });
