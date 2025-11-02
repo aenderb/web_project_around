@@ -1,3 +1,5 @@
+import { CONFIG } from "../config.js";
+
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
@@ -111,11 +113,6 @@ class Api {
     });
   }
 }
-
-const CONFIG = {
-  API_TOKEN: "40fa016c-26e3-4711-8370-05bdd6a2c046",
-  BASE_URL: "https://around-api.pt-br.tripleten-services.com/v1",
-};
 
 export const api = new Api({
   baseUrl: CONFIG.BASE_URL,
