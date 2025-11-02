@@ -1,3 +1,5 @@
+import { CONFIG } from "../config.js";
+
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
@@ -113,9 +115,9 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: window.CONFIG.BASE_URL,
+  baseUrl: CONFIG.BASE_URL,
   headers: {
-    authorization: window.CONFIG.API_TOKEN,
+    authorization: CONFIG.API_TOKEN,
     "Content-Type": "application/json",
   },
 });
