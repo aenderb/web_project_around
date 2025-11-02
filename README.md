@@ -18,6 +18,9 @@ Tecnologias utilizadas HTML + CSS + Javascript
         - POO - Programaçao orientada a Objetos
         - Refactor de pastas para organizarção do projeto
         - Refactor com todas as classes e suas responsabilidades
+    - API - agora o projeto esta dinamico com uso de API
+        -  Crie um arquivo `src/config.js` baseado em `config.example.js` 
+        -  Adicione em `config.js` seu token da API TripleTen
   
   
 Acesse a pagina aqui: https://aenderb.github.io/web_project_around/
