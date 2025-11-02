@@ -34,12 +34,12 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           mkdir -p src
-          cat > src/config.js <<'EOF'
-          export const CONFIG = {
-            API_TOKEN: "${API_TOKEN}",
-            BASE_URL: "${BASE_URL}",
-          };
-          EOF
+          cat > src/config.js <<EOF
+export const CONFIG = {
+  API_TOKEN: "${API_TOKEN}",
+  BASE_URL: "${BASE_URL}",
+};
+EOF
 
       - name: Build project
         run: npm run build
